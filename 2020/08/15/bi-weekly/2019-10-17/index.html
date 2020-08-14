@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zhangXiaolong">
+  <meta name="keywords" content="">
+  <title>AI-performance</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/qtcreator-dark.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>AI Performance</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/bi-weekly/">
+                <i class="iconfont icon-category-fill"></i>
+                Bi-weekly
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/demo/">
+                <i class="iconfont icon-link-fill"></i>
+                demo
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/2.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-15 01:23">
+      2020年8月15日 凌晨
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="嵌入式AI简报-2019-10-17"><a href="#嵌入式AI简报-2019-10-17" class="headerlink" title="嵌入式AI简报 (2019-10-17)"></a>嵌入式AI简报 (2019-10-17)</h1><p><strong>关注模型压缩、低比特量化、移动端推理加速优化、部署</strong><br><font>注：PC端微信链接打不开请用手机打开</font></p>
+<h2 id="业界新闻"><a href="#业界新闻" class="headerlink" title="业界新闻"></a>业界新闻</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/NNTA7B_ZZNruh01Nax26Mg">PyTorch 1.3发布：能在移动端部署，支持Colab云TPU，阿里云上也能用 | 量子位</a><br>摘要：PyTorch 1.3率先公布。新的版本不仅能支持安卓iOS移动端部署，甚至还能让用户去对手Google的Colab上调用云TPU。<br>PyTorch 1.3支持端到端的工作流，从Python到部署在iOS和安卓端。移动端的部署还是早期实验版本，针对端到端做了优化重点在：  <ol>
+<li>库大小优化，根据用户需要构建级别优化和选择性编译；  </li>
+<li>提升了移动CPU和GPU上的性能；  </li>
+<li>高级API：扩展移动原生API，覆盖常用预处理、将机器学习合并到移动应用需要的集成任务，比如计算机视觉或者NLP的任务。<br>移动端部署细节：<a target="_blank" rel="noopener" href="https://pytorch.org/mobile/home/">https://pytorch.org/mobile/home/</a>  </li>
+</ol>
+</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Q-6-GVEyUhyDj9JqbfLJTg">Arm推出嵌入式CPU的客制化指令 | Arm中国</a><br>摘要：Arm Custom Instruction(客制化指令)让设计片上系统(SoC)的合作伙伴，透过特定嵌入式与物联网(IoT)应用的优化，达成市场差异化区分。<br>在避免软件碎片化的情况下，架构上可支持完全整合之客制化CPU指令的智能与快速开发。建立在Armv8-M架构的关键优点上，包括强大的软件生态系统、安全性与更快的处理加速 ，且不会产生额外费用。<br>Arm Custom Instruction(客制化指令)让设计片上系统(SoC)的合作伙伴，透过特定嵌入式与物联网(IoT)应用的优化，达成市场差异化区分。<br>在避免软件碎片化的情况下，架构上可支持完全整合之客制化CPU指令的智能与快速开发。建立在Armv8-M架构的关键优点上，包括强大的软件生态系统、安全性与更快的处理加速 ，且不会产生额外费用。   </li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/DAXXYzLhFtMXUIbEXE1zmw">多核性能击败麒麟990和骁龙855！联发科首款5G芯片HelioM70跑分曝光，采用A77架构 | EETOP</a><br>摘要：近日GeekBench官网出现疑似Helio M70的跑分结果，单线程3447/多线程12151，搭载最新A77架构，不出意外的话这款就是联发科首款5G芯片Helio M70。<br>对比骁龙855及麒麟990跑分，可以看到单核心跑分弱于这两者，但凭借多核心12151的跑分已经超过了855和990，妥妥的是旗舰级性能。加上GPU、4K60fps录像、AI等方面的规格，可以说已经具备了冲击高端手机的实例。<br>联发科Helio M70(MT6297)采用台积电7nm工艺制造(高通骁龙X50还是28nm)，是一款5G多模整合基带，同时支持2G/3G/4G/5G，完整支持多个4G频段，可以简化终端设计，再结合电源管理整体规划可以大大降低功耗。  </li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/C_jmVr_cYZOmExAG2I9OqQ">FPGA行业巨头Xilinx推出Vitis AI平台，并在GitHub上开源 | 量子位</a><br>摘要：FPGA芯片厂商赛灵思（Xilinx）在北京发布了Vitis统一软件平台，支持赛灵思多种可编程逻辑器件（如FPGA、ACAP、MPSoC等硬件）上的应用程序的新框架。它为云端、边缘和混合计算应用加速提供了统一编程模型。<br>Vitis提供了一系列重要组件，包括Vitis AI开发环境、Vitis加速库、Vitis运行时库等等。其中，Vitis AI是赛灵思的人工智能开发平台，适用于在赛灵思硬件上进行AI推理，帮助FPGA释放AI加速的潜力。 </li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/554WFzKDqkZteXQSMKCi4w">Instagram 上线 AR 试妆功能 | 雷锋网</a><br>摘要：Instagram今日刚刚上线了一项AR试妆功能。目前这项功能仅向化妆品（Mac和Nars是早期合作伙伴）和眼镜品牌（Warby Parker和Ray-Ban）开放，未来也将逐渐推广到其他产品类别。<br>通过这项功能，消费者将产品添加至购物车前，可以预览这些产品用在自己身上的实际效果。同时，也可以将试用的效果图分享至Instagram，其他消费者通过这张效果图就可以快速连接至该商品，形成病毒式的传播。<br>据了解，这项功能背后的技术与Spark AR平台相同，后者为Instagram的相机效果和Facebook的AR广告提供了大量支持。  </li>
+</ul>
+<h2 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/bRQQgCpcRNjRSs67il0kUg">麻省理工HAN Lab | ProxylessNAS自动为目标任务和硬件定制高效CNN结构(文末论文及源码) | 计算机视觉战队</a><br>摘要：NAS受限于其过高的计算资源需求，仍无法在大规模任务上直接进行神经网络的学习。<br>这篇文章主要解决NAS代理机制下无法搜索到全局最优的问题，改进搜索策略，一定程度上解决资源消耗的问题。<br>作者提出了ProxylessNAS，第一个在没有任何Proxy的情况下直接在ImageNet量级的大规模数据集上搜索大设计空间的的NAS算法，并首次专门为硬件定制CNN架构，作者还将模型压缩(减枝、量化)的思想与NAS进行结合，把NAS的计算成本(GPU时间和内存)降低到与常规训练相同的规模，同时保留了丰富的搜索空间，并将神经网络的硬件性能(延时，能耗)也直接纳入到优化目标中。</li>
+</ul>
+<h2 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB">Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB: 💎 1MB轻量级通用人脸检测模型</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/pytorch/xla">pytorch/xla: Enabling PyTorch on Google TPU</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/tpoisonooo/chgemm">tpoisonooo/chgemm: symmetric int8 gemm</a><br>摘要：chgemm 是一个 int8 gemm 工程，与 BLAS gemm 不完全相同：  <ol>
+<li>输入为 [-127, +127] 范围内的 int8_t 类型矩阵，输出为 int32_t 矩阵。需注意溢出；</li>
+<li>更多地为深度学习应用场景考虑，packAB 接口暴露出来可以调整；</li>
+<li>实现为 C = A * B。alpha 和 beta 在深度学习推理中无实用意义；</li>
+<li>行主序实现，放弃远古 fortran 时代的列主序；</li>
+<li>不低于其他项目的 symmint8 gemm 速度。</li>
+</ol>
+</li>
+</ul>
+<h2 id="博文"><a href="#博文" class="headerlink" title="博文"></a>博文</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/-Rv13DNJPODPefjfv2lXyQ">快手王华彦：端上视觉技术的极致效率及其短视频应用实践 | AI科技大本营</a><br>摘要：快手硅谷Y-tech实验室负责人王华彦讲述了端上视觉技术的极致效率及其短视频应用实践。<br>他指出了其中面临的技术挑战：第一，不可控的复杂场景和环境；第二，极为有限的移动设备计算资源；第三，由于所有应用有很强的时效性，需要做到快速开发和部署模型。<br>为了应对这些挑战，他介绍了解决方案和研究方向的三要素：首先是运用高度结构化的模型，并充分利用先验知识；其次，面对计算资源紧缺需要充分发掘各种冗余来提高算法的推理效率；最后，用高度结构化的信息表示提高学习算法利用数据的效率。  </li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/86620263">大小仅1MB，超轻量级通用人脸检测模型登上GitHub趋势榜 | 知乎</a><br>摘要：近日，用户 Linzaer 在 Github 上推出了一款适用于边缘计算设备、移动端设备以及 PC 的超轻量级通用人脸检测模型，该模型文件大小仅 1MB，320x240 输入下计算量仅 90MFlops。项目推出不久即引起了大家的关注，登上了今天的 Github trending。  </li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Op2jAT32n-4PSCkI2kk-rQ">世界知名半导体ST、NXP、Microchip、TI、Renesas公司的MCU和MPU定位、性能及特点 | strongerHuang</a><br>摘要：前不久，恩智浦推出了Cortex-M7 + M4内核的MCU（i.MX RT1170），主频高达1GHz，打破MCU低频的传统。来了解一下世界上几个知名MCU厂商各家的MCU产品。概念：  <ol>
+<li>MCU：Microcontroller Unit，微控制器，或者单片机；  </li>
+<li>MPU：Microprocessor Unit，微处理器；  </li>
+<li>DSC：Digital signal controller，数字信号控制器。  </li>
+</ol>
+</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/7vUtC57GUR5apL4N-Cka-g">RISCV的高性能计算探索：HWACHA的硬件架构解析 | MikesICroom</a><br>摘要：最近在学习RISCV相关的东西，发现了Berkeley一个很有意思的项目：HWACHA。这是一个使用RISCV开源处理器构建的类vector的多核异构系统，可以用来做低算力的深度学习应用。当然HWACHA本身也是开源的，有兴趣可以去github下载源码跑跑看。这里还是从硬件设计的角度来分析下这种多核异构系统的特点。<br>Summary：HWACHA使用了自定义的类Vector指令集，通过内嵌调用的形式和RISCV ISA整合在一起。HWACHA的执行类似于紧耦合的coprocessor，RISCV core负责循环的控制，Vector units负责主要的向量运算。两者通过特殊的指令进行co-work，实现控制和运算错拍的并行执行。相比传统的处理器Vector扩展，HWACHA将integer和vector完全隔离，硬件设计相对简单且易于扩展，可以提供良好的并行性。不过由于是独立的指令集，需要和RISCV ISA一起联合编译，对compiler有特殊的要求。  </li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/hNP0imHvpR77wphAqcUtuQ">技术架构的战略和战术原则 | InfoQ</a><br>摘要：技术架构，是将产品需求转变为技术实现的过程。技术架构解决的问题包括了如何进行纯技术层面的分层、开发框架选择、语言选择（这里以 JAVA 语言为主）、涉及到各自非功能性需求的技术点（安全、性能、大数据）。技术架构是确定组成应用系统实际运行的技术组件、技术组件之间的关系，以及部署到硬件的策略。<br>技术架构面临最大的挑战是“不确定性”。在技术架构上，很多时候就会面临这种选择。是要选择业界最新的技术？还是选择团队最熟悉的技术？如果选择最新的技术，遇到新技术出了问题怎么解决？如果选择目前熟悉的技术，后续技术演进怎么办。</li>
+</ul>
+<h2 id="往期回顾"><a href="#往期回顾" class="headerlink" title="往期回顾"></a><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai">往期回顾</a></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai/blob/master/embedded-ai-report/2019-10-03.md">2019-10-03</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai/blob/master/embedded-ai-report/2019-09-16.md">2019-09-16</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai/blob/master/embedded-ai-report/2019-08-30.md">2019-08-30</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai/blob/master/embedded-ai-report/2019-08-15.md">2019-08-15</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai/blob/master/embedded-ai-report/2019-07-30.md">2019-07-30</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai/blob/master/embedded-ai-report/2019-07-15.md">2019-07-15</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai/blob/master/embedded-ai-report/2019-06-29.md">2019-06-29</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai/blob/master/embedded-ai-report/2019-06-17.md">2019-06-17</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai/blob/master/embedded-ai-report/2019-05-30.md">2019-05-30</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai/blob/master/embedded-ai-report/2019-05-15.md">2019-05-15</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai/blob/master/embedded-ai-report/2019-04-27.md">2019-04-27</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai/blob/master/embedded-ai-report/2019-04-13.md">2019-04-13</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai/blob/master/embedded-ai-report/2019-03-31.md">2019-03-31</a>  </li>
+</ul>
+<hr>
+<p><img src="../wechat_qrcode.jpg" srcset="/img/loading.gif" alt="wechat_qrcode"></p>
+<p>Wechat ID: NeuroMem<br>Editor: <a target="_blank" rel="noopener" href="https://github.com/ysh329">https://github.com/ysh329</a><br>Project: <a target="_blank" rel="noopener" href="https://github.com/ysh329/awesome-embedded-ai">https://github.com/ysh329/awesome-embedded-ai</a>  </p>
+<hr>
+<p><a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/2.0/88x31.png" srcset="/img/loading.gif" /></a><br />本作品采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">知识共享署名-相同方式共享 2.0 通用许可协议</a>进行许可。</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/15/bi-weekly/2019-10-31/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/15/bi-weekly/2019-10-03/">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+      icon: "§"
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

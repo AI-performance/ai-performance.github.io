@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zhangXiaolong">
+  <meta name="keywords" content="">
+  <title>AI-performance</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/qtcreator-dark.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>AI Performance</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/bi-weekly/">
+                <i class="iconfont icon-category-fill"></i>
+                Bi-weekly
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/demo/">
+                <i class="iconfont icon-link-fill"></i>
+                demo
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/2.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-15 01:23">
+      2020年8月15日 凌晨
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      20
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="嵌入式AI-双周简报-2018-06-25"><a href="#嵌入式AI-双周简报-2018-06-25" class="headerlink" title="嵌入式AI 双周简报 (2018-06-25)"></a>嵌入式AI 双周简报 (2018-06-25)</h1><h2 id="业界新闻"><a href="#业界新闻" class="headerlink" title="业界新闻"></a>业界新闻</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/ODbusCLN0rAj929Fkb3tlQ">微软即将收购GitHub：喜提最大代码托管网站 |机器之心</a><br/><br>简评：在上周五传出消息后不久，微软对GitHub的收购邀约很快成为了现实。据彭博社等媒体得到的消息：微软已于上周日决定收购这家最热门的开源代码共享平台。</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Viw5Ax9pPuk77LKsmqXDCA">Intel试量产14nm基带XMM 7560：新一代iPhone将采用 明年上5G | EETOP</a><br/><br>简评：据日经亚洲评论报道，Intel已经开始在内部试产XMM 7560基带，据悉该基带将用于今年苹果的新一代iPhone。</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/SmbXrAsmXEAm2wfvNuW52w">英特尔芯片又现漏洞：数学运算单元可泄露密钥 | 安全牛</a><br/><br>简评：英特尔Core及Xeon处理器上的安全漏洞可被利用来盗取芯片上数学处理单元中的敏感数据。恶意软件或恶意用户能利用该设计缺陷偷取其他软件在芯片上执行的计算输入或计算结果。</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/6pNZ8Crs4Lel2C0TlFAc4Q">“穿墙识人”，MIT人体姿态估计系统创历史最高精度 | 新智元</a><br/><br>简评：MIT计算机与人工智能实验室的研究人员开发了一种基于Wi-Fi的人体姿态估计系统，用AI教会Wi-Fi“穿墙透视”，隔着墙也能进行精确的人体姿态估计。</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/EHO6D_2jkNfQo-8zB1-rBg">超GPU 100倍，IBM新型AI芯片发Nature，英特尔、微软出大招 | 新智元</a><br /><br>简评：IBM研发出能效超GPU 100倍的新型存储器，英特尔预计2020年发布第一批独立GPU，清华的Thinker芯片论文入选ISCA-18。从学术界到产业界，芯片研究者的探索从未停止，进展也在切实发生。英特尔中国研究院院长宋继强博士，清华大学教授、微纳电子学系主任魏少军博士对未来AI芯片趋势进行了展望。</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/8t5sf9Zwvql1tZiAKuivsg">PerfXLab澎峰科技正式发布Perf-V Creative Board 工程板 | PerfXLab澎峰科技</a><br/><br>简评：昨日澎峰科技宣布正式发售RISC-V开发板Perf-V Creative Board，目前可选芯片有XC7A35T、XC7A50T、XC7A100T三种。</li>
+</ul>
+<h2 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.cse.cuhk.edu.hk/leojia/papers/scaledeblur_cvpr18.pdf">Scale-recurrent Network for Deep Image Deblurring</a><br/><br>简评：因为手抖或焦点选择等问题，相机拍摄的图像中常常存在模糊状况。消除图像模糊，呈现图像细节是计算机视觉领域内的一个重要研究主题。香港中文大学、腾讯优图实验室和旷视科技的研究者合作提出的 SRN-DeblurNet 能更高效地实现比之前最佳方法更好的结果。</li>
+<li>[1711.09349] <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1711.09349.pdf">Beyond Part Models: Person Retrieval with Refined Part Pooling (and A Strong Convolutional Baseline)</a><br/><br>简评：利用部分级特征进行行人图像描述提供了细粒度的信息，已在近期文献中被证明对于人物检索很有用。相对于外部线索方法，清华大学、悉尼大学和德克萨斯大学的研究者采用内部一致性假设，提出新的基线网络和精炼部分池化方法，实现了更好的人物检索性能，并超越了当前最佳结果。</li>
+<li>[1806.08342] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1806.08342">Quantizing deep convolutional networks for efficient inference: A whitepaper</a><br/><br>简评：本文概述了量化卷积神经网络的技术，用于对整数权重和激活进行推理。每通道的重量和每层量子化的激活量为8位精度的训练后，在不同的CNN架构中，在2%的浮动点网络中产生分类精度。模型大小可以通过将权重量化为8位来减少4倍，即使不支持8位算法。这可以通过简单的、后训练量化的权重来实现。</li>
+<li>[1806.07857] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1806.07857">RUDDER: Return Decomposition for Delayed Rewards</a><br/><br>简评：在强化学习中，延迟奖励的存在会严重影响性能，主要表现在随着延迟步数的增加，对时间差分（TD）估计偏差的纠正时间的指数级增长，和蒙特卡洛（MC）估计方差的指数级增长。针对这一问题，来自奥地利约翰开普勒林茨大学 LIT AI Lab 的研究者提出了一种基于返回值分解的新方法 RUDDER。实验表明，RUDDER 的速度是 TD、MC 以及 MC 树搜索（MCTS）的指数级，并在特定 Atari 游戏的训练中很快超越 rainbow、A3C、DDQN 等多种著名强化学习模型的性能。</li>
+<li>[1803.03243] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1803.03243">Domain Adaptive Faster R-CNN for Object Detection in the Wild</a> <a target="_blank" rel="noopener" href="https://github.com/yuhuayc/da-faster-rcnn">[code]</a><br/><br>简评：更快的域自适应R-CNN物体检测。</li>
+<li>[1806.06003] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1806.06003">On Machine Learning and Structure for Mobile Robots</a><br/><br>简评：关于移动机器人的机器学习和结构分析。</li>
+</ul>
+<h2 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/NervanaSystems/distiller/">Intel发布神经网络压缩库Distiller：快速利用前沿算法压缩PyTorch模型</a><br/><br>简评：Intel 开源了一个用于神经网络压缩的开源 Python 软件包 Distiller，它可以减少深度神经网络的内存占用、加快推断速度及节省能耗。Distiller 为 PyTorch 环境提供原型和分析压缩算法，例如产生稀疏性张量的方法和低精度运算等。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mahyarnajibi/SNIPER">SNIPER: Efficient Multi-Scale Training</a><br/><br>简评：高效多尺度目标检测算法</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/lext/deep_docker">关于YADDL，深度学习的另一个Docker</a><br/><br>简评：运用深度学习实验的简约码头环境。它建立在nvidia-docker之上，并且安装了tensorflow，keras和pytorch 0.4.0。此外，它在容器启动时自动运行Tensorboard和Jupyter实验室。这个项目的主要特点是最小的手动配置（保存数据的网络和文件夹）。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/zalandoresearch/flair">集成最先进NLP技术的简单框架(Python)——Flair</a><br/><br>简评：一个非常简单的NLP框架。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/DensePose">Facebook开源2D图片实时3D姿态估计DensePose(Caffe2)</a><br/><br>简评：一种将2D RGB图像的所有人像素映射到身体三维表面模型的实时方法。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/philferriere/dlwin">基于Windows 10本机的GPU加速深度学习</a><br/><br>简评：支持Keras/Tensorflow/CNTK/MXNet and PyTorch五大框架，其中CNTK, Tensorflow, or MXNet提供GPU支持。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/symisc/sod">An Embedded Computer Vision &amp; Machine Learning Library (CPU Optimized &amp; IoT Capable)</a><br/><br>简评：嵌入式计算机视觉与机器学习库。</li>
+</ul>
+<h2 id="博文"><a href="#博文" class="headerlink" title="博文"></a>博文</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/-V6hlZAKp1vuARSibZDBQQ">深度学习高效计算与处理器设计 | 深度学习大讲堂</a><br/><br>简评：探索如何将深度学习高效化，讲述讨论如何针对深度算法来设计专用处理芯片。</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/XDKA03vKneXgl4IAFC1jdg">阿里90后工程师利用ARM硬件特性开启安卓8终端“上帝模式 | 云栖社区</a><br/><br>简评：硬件设计的不合理危害性远高于软件层面，且修补更新更为困难。在设计之初就将安全性作为一项重要的指标是最佳的选择。</li>
+<li><a target="_blank" rel="noopener" href="https://www.pyimagesearch.com/2018/06/18/face-recognition-with-opencv-python-and-deep-learning/">Face recognition with OpenCV, Python, and deep learning | PyImageSearch</a><br/><br>简评：用OpenCV/Python/深度学习实现人脸识别。</li>
+<li><a target="_blank" rel="noopener" href="https://www.learnopencv.com/understanding-alexnet/">Understanding AlexNet</a><br/><br>简评：关于AlexNet的详细解读。</li>
+<li><a target="_blank" rel="noopener" href="https://academic.oup.com/annonc/advance-article-abstract/doi/10.1093/annonc/mdy166/5004443?redirectedFrom=fulltext">Man against machine: diagnostic performance of a deep learning convolutional neural network for dermoscopic melanoma recognition in comparison to 58 dermatologists | Annals of Oncology | Oxford Academic</a><br/><br>简评：深度学习卷积神经网络对皮肤镜黑色素瘤识别的诊断性能，与58名皮肤科医生进行对比。</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/_kI-eMFKiL4pvDoXqqukBw">卷积神经网络的压缩和加速 | SigAI</a><br/><br>简评：介绍了四种压缩方法：网络裁枝、模型量化、低轶估计、模型蒸馏。</li>
+</ul>
+<hr>
+<p>Editor: 王建章、袁帅</p>
+<hr>
+<p><a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/2.0/88x31.png" srcset="/img/loading.gif" /></a><br />本作品采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">知识共享署名-相同方式共享 2.0 通用许可协议</a>进行许可。</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/15/bi-weekly/2018-07-20/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/15/bi-weekly/2018-05-26/">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+      icon: "§"
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
