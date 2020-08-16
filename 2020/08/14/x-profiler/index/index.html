@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
-  <link rel="icon" type="image/png" href="/img/logo.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" type="image/png" href="/img/logo.jpg">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -28,7 +28,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/qtcreator-dark.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -117,7 +117,7 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/2.jpg') no-repeat center center;
+         style="background: url('/img/x-profiler/x-profiler.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -141,7 +141,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      100 字
+      2.3k 字
     </span>
   
 
@@ -151,7 +151,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      24
        分钟
     </span>
   
@@ -183,7 +183,7 @@
             
             <article class="markdown-body">
               <div class="note note-success">
-            <p style="text-align:center;color:#f00056;font-size:1.5em;font-weight: bold;">摘要</p>业界新闻，论文，开源项目，博文，硬件加速
+            <p style="text-align:center;color:#f00056;font-size:1.5em;font-weight: bold;">摘要</p>一个涵盖CPU、GPU、XPU的性能perf工具，在AI以及通用场景下的底层性能调优工具。
           </div>
 
 
@@ -205,7 +205,116 @@
   }
 </style>
 
-<p><a id="rainbow" href=''>🌈 获取中...</a></p> -->
+
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
+<li>之前就一直考虑要做一个移动端的CPU perf工具，不仅能够提供工程级别的perf，还能提供函数级别，甚至是算子级别，代码块级别的perf工具，当时做了个简陋版本，然后就没做下去了，现在刚好接触了NPU，同时也有小伙伴一起做，因此决定要好好的做一下，看是否能为这个AI HPC社区做些什么贡献，大致的初步框架如下：</li>
+</ul>
+<p><img src="/img/x-profiler/Arch.jpg" srcset="/img/loading.gif" alt="Arch"></p>
+<!-- 下面图片来自[知乎大佬KPLIN回答](https://www.zhihu.com/question/399443653/answer/1270653394)：
+
+![](/img/x-profiler/13.jpg) -->
+
+
+<hr>
+<h2 id="CPU-partial"><a href="#CPU-partial" class="headerlink" title="CPU partial"></a>CPU partial</h2><p>CPU部分可以参见之前的知乎专栏：</p>
+<div class="note note-success">
+            <!-- - [AI移动端优化](https://zhuanlan.zhihu.com/zhangxiaolongOptimization) --><p><a class="btn" href="https://zhuanlan.zhihu.com/zhangxiaolongOptimization"  title="点击跳转" target="_blank">专栏地址：《AI移动端优化》</a><br><a class="btn" href="https://zhuanlan.zhihu.com/p/75484211"  title="点击跳转" target="_blank">文章地址：《CPU体系结构之手排流水线专题》番外篇之PowerPerf工具介绍呀~</a></p>
+          </div>
+
+<hr>
+<p>我把内容大致描述如下：</p>
+<h3 id="零-·-前言"><a href="#零-·-前言" class="headerlink" title="零 · 前言"></a>零 · 前言</h3><p>紧接上次《CPU体系结构之手排流水线专题一》应该是写《CPU体系结构之手排流水线专题0x02》了的，但是考虑到其中我会用到我写的那个PowerPerf工具，因此有必要在这之前简单介绍下我的这个工具：</p>
+<p>再说下业内有哪些在用的perf工具，优点以及不足，然后我的这个优点又是啥？</p>
+<p>接着，说下我这个是怎么做的，技术架构是啥？</p>
+<p>结合实例说明下我这个工具的精度如何？</p>
+<p>最后在实际卷积算子的撰写过程中说明这个工具能做到些啥，解决啥问题！</p>
+<hr>
+<h3 id="壹-·-perf背景介绍"><a href="#壹-·-perf背景介绍" class="headerlink" title="壹 · perf背景介绍"></a>壹 · perf背景介绍</h3><p>关于perf的介绍，这里有大佬整体介绍过了的：</p>
+<div class="note note-success">
+            <p><a class="btn" href="https://zhuanlan.zhihu.com/p/52107689"  title="点击跳转" target="_blank">恒生研究院：超全整理！Linux性能分析工具汇总合集</a></p><!-- [恒生研究院：超全整理！Linux性能分析工具汇总合集](https://zhuanlan.zhihu.com/p/52107689) -->
+          </div>
+<p><img src="/img/x-profiler/0.png" srcset="/img/loading.gif" alt="图片来源： 官网"></p>
+<p style="text-align:left;color:#f00056;font-size:1.0em;font-weight: bold;">
+简单来说就是linux系统在驱动级别就提供了一整套的perf接口，能做很多事！能在应用函数级别perf到很多的数据的呀！比如你看下面能获得各个函数的一些event数据！
+</p>
+
+
+<p><img src="/img/x-profiler/1.png" srcset="/img/loading.gif" alt="linux perf软件（图片来源：google）"></p>
+<p><img src="/img/x-profiler/2.png" srcset="/img/loading.gif" alt="火焰图（图片来源：google）"></p>
+<p>但是缺点是<span class="label label-success">不够灵活</span>，不能做到获取工程中<span class="label label-success">任意某段代码的perf数据</span>。</p>
+<p>为啥一定要说这是个缺点呢？</p>
+<p>我还是啰嗦地说，你看哈，写底层推理框架，通常分了两层，一层就是框架层，一层就是算子层，假如是做一般的优化我们直接用linux的perf软件就ok了的，能得到比较好的算子了，甚至可以得到最优的算子！</p>
+<p>但是，我这个人有个毛病，就是做技术要追求最优点，追求全局最优点！既然我们都优化算子了，那么何不把算子的核心“汇编代码块”也优化到极致呢？</p>
+<p>你看我们的算子构成是这样的：</p>
+<pre><code class="hljs c++"><span class="hljs-keyword">operator</span>()&#123;
+<span class="hljs-comment">// code 前处理</span>
+<span class="hljs-comment">// 循环最内层asm汇编部分</span>
+<span class="hljs-comment">//code 后处理</span>
+&#125;</code></pre>
+
+<p>我做过大量的实验，在各种算子的实现方式下，“循环最内层asm汇编部分”占了算子总耗时90%+（除了某些特定的算子），因此矛盾的主要点就在这个汇编算子呀！</p>
+<p>但是发现问题点没，这部分需要重点优化的就是某段汇编代码，我们需要实现一种<span class="label label-success">灵活方便且相对精确的</span>perf工具来在线perf这段代码块的性能参数！</p>
+<hr>
+<h3 id="贰-·-perf要得到的参数"><a href="#贰-·-perf要得到的参数" class="headerlink" title="贰 · perf要得到的参数"></a>贰 · perf要得到的参数</h3><p><strong>如何优化？</strong></p>
+<p>循环展开、并行、指令流水重排、cache优化、减少内存复用。。。总共也就这些呀！</p>
+<p>但是我们通常就是靠经验来优化一些代码呀，并没有很好的性能参数量化指导方案呀！因此我们可以这么设想：</p>
+<div class="note note-warning">
+            <p>“要是我写了某一段代码，然后在开发project内编译一跑，就直接得到一组硬件性能参数，并告诉你这段代码只利用了硬件资源的百分之多少，还有多少的上升空间，需要改进的方面有哪哪哪几个方面！”</p>
+          </div>
+
+<p>这样无论是对于理解硬件特性还是优化代码性能，都是一个很不错的设想呀~</p>
+<p>嗯就从这个出发，我们可以大概分这么两大类，instruction + cache：</p>
+<ul>
+<li>指令流水线这块主要是获取IPC参数，需要的性能参数有指令数、CPU cycles数；</li>
+<li>cache这块就主要关注：Lx cache hit， Lx cache miss，writeback…..;</li>
+</ul>
+<p>要的东西列出来了，那么接下来的问题就是去哪获取的问题了，这个好办，看芯片手册嘛！</p>
+<p>  <img src="/img/x-profiler/3.png" srcset="/img/loading.gif" alt="ARM PMU function"></p>
+<p>你看这个模块叫做PMU，你的代码在CPU硬件上跑的过程中就会被这个模块给默默地记录下来了！是硬件级别的记录啊，从我们软件er的角度来说可以认为是实时获取的。</p>
+<p>好了知道从哪获取了那我们接下来要考虑的就是如何获取了！</p>
+<p>如何获取？我就想到了在前公司使用过的DS-5，当时用它在裸板上调试代码，能看到超多的硬件实时参数信息，我想着我是不是也可以仿照做个阉割版。。。。</p>
+<p>直接上官网一看：</p>
+<p><img src="/img/x-profiler/4.png" srcset="/img/loading.gif"></p>
+<p>里面有段介绍：</p>
+<p><img src="/img/x-profiler/5.png" srcset="/img/loading.gif"></p>
+<p>得了，这下清楚了，总结下来实现方案就是：</p>
+<div class="note note-warning">
+            <p>代理：收集数据 → 传输数据;</p>
+          </div>
+
+<p>接下就是好玩的部分了，我们可以凭空想象，想怎么实现就怎么实现，任何技术任何想法，这种“创造”的感觉太TM爽了！咳咳，来，咋们还是再扯扯具体怎么实现吧！</p>
+<hr>
+<h3 id="叁-·-perf应用框架系统搭建"><a href="#叁-·-perf应用框架系统搭建" class="headerlink" title="叁 · perf应用框架系统搭建"></a>叁 · perf应用框架系统搭建</h3><p>总之想了几天之后，实现的技术框架就是这个样子，当然里面还是有很多细节的，比如究竟如何获取PMU里面的数据，也是碰到了好多的坑，一步一步才填过来的！这里只做介绍，细节暂且不表，以后有机会再细说实现代码呀！</p>
+<p><img src="/img/x-profiler/6.png" srcset="/img/loading.gif"></p>
+<p>是吧，思路超简单呀，分两大块上位机显示界面加移动端数据提供端，中间通过自定义的简单通信协议进行数据传递。</p>
+<p><img src="/img/x-profiler/7.png" srcset="/img/loading.gif"></p>
+<p>最终的实现效果如图所示呀！还是蛮粗糙！但也凑合着用了哇~</p>
+<hr>
+<h3 id="肆-·-perf工具精度验证"><a href="#肆-·-perf工具精度验证" class="headerlink" title="肆 · perf工具精度验证"></a>肆 · perf工具精度验证</h3><p>自己写了得验证精度不是，不然咋知道我测的数据准不准啊！</p>
+<p><img src="/img/x-profiler/8.png" srcset="/img/loading.gif"></p>
+<p>反正一顿操作得到一组数据：</p>
+<div class="note note-success">
+            <p style="text-align:center;color:#f00056;font-size:1.5em;font-weight: bold;">实测数据及结论</p><p>理论访存次数              = 4000000<br>CPU_CYCLES               = 341089056<br>L1D_CACHE_REFILL         = 4014193<br>L1D_CACHE                = 4000188<br>LD_RETIRED               = 4000120<br>Average latency          = CPU_CYCLES/LD_RETIRED=85 cycles</p><p>L1D_CACHE_REFILL：<br>        就是cache miss数，由于每次访存都miss了，因此，总共是4000000+系统扰动约等于4014193，误差为0.3%；<br>LD_RETIRED：<br>        访存指令数，理论值为40000000，测试误差为0.03‰；<br>L1D_CACHE<br>         为CPU实际访问cache的次数，误差为0.05‰；</p>
+          </div>
+
+<p>注意这里我就测了个普通场景的精度，因此在一定的测试环境下精度还是可以的，严苛场景的话就需要我们做一些转换啦~</p>
+<hr>
+<h3 id="伍-·-举两个栗子"><a href="#伍-·-举两个栗子" class="headerlink" title="伍 · 举两个栗子"></a>伍 · 举两个栗子</h3><p>首先就是举个指令流水的例子，我们的例子是线性访存，如右图所示：</p>
+<p><img src="/img/x-profiler/9.png" srcset="/img/loading.gif"></p>
+<p>按图所示访存，出现了两个阶梯，第一个阶梯是平均latency为1 cycles，第二个阶梯为2 cycles，第三个就稍微复杂些了，属于cache的范畴，暂且不表，我们来分析下第一二个阶梯的区别及产生的原因；</p>
+<p>第一二个阶梯的区别就是一个加了地址偏移0，另外一个没加，因此就是累加地址偏移值的这个操作需要花费一个cycles，从而导致指令耗时增加，我们可以画了流水图看一下：</p>
+<p><img src="/img/x-profiler/10.png" srcset="/img/loading.gif"></p>
+<p>可以看到理论值跟实测值还是蛮吻合的嘛~</p>
+<p>第二个例子就是可以构建出特定硬件的存储器山三维图呀，我们先不看三维就看个二维的，也就是说获取某个特定硬件的L1 latency，L2 latency， memory latency呀~</p>
+<p><img src="/img/x-profiler/11.png" srcset="/img/loading.gif"></p>
+<p>第三个例子就是在写算子过程中，发现某些特定size下性能的缺陷，通过这个工具可以轻松定位到是cache way conflict的问题呀！（当然，经验丰富的高工前辈们还是能一眼就看出来的呀！向前辈们学习！）</p>
+<hr>
+<h3 id="陆-·-总结"><a href="#陆-·-总结" class="headerlink" title="陆 · 总结"></a>陆 · 总结</h3><blockquote>
+<p>总之，这篇文章我实现希望告诉大家我大概做了个啥，能干啥（辅助调优算子）！为下一篇博文做铺垫而已呀！ 因此就在这草草搁笔啦！当然我还是希望今后能有机会把这个工具开源出来跟大家一起学习摸索呀！<br>笔心~</p>
+</blockquote>
+<p>所以当初自己挖的坑，现在终于想起来要填啦，欢迎大家关注呀AI-performance呀！</p>
+<h2 id="GPU-partial"><a href="#GPU-partial" class="headerlink" title="GPU partial"></a>GPU partial</h2><h2 id="XPU-partial"><a href="#XPU-partial" class="headerlink" title="XPU partial"></a>XPU partial</h2><h2 id="点击下面找寻彩虹"><a href="#点击下面找寻彩虹" class="headerlink" title="点击下面找寻彩虹~"></a>点击下面找寻彩虹~</h2><p><a id="rainbow" href=''>🌈 获取中...</a></p> -->
 <script>
 fetch('https://api.eatrice.top')
   .then(response => response.json())
