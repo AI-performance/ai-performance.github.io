@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zhangXiaolong">
+  <meta name="keywords" content="">
+  <title>2017-12-12@Bi-weekly - AI-performance</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/qtcreator-dark.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>AI Performance</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                导航入口
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/2.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2017-12-12 08:00">
+      2017年12月12日 早上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      22
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="嵌入式AI-双周简报-2017-12-12"><a href="#嵌入式AI-双周简报-2017-12-12" class="headerlink" title="嵌入式AI 双周简报 (2017-12-12)"></a>嵌入式AI 双周简报 (2017-12-12)</h1><h2 id="业界新闻"><a href="#业界新闻" class="headerlink" title="业界新闻"></a>业界新闻</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?timestamp=1513062408&src=3&ver=1&signature=fTQ93DETY2RWqbThhgdlcBq1RqsL571fcPqXLNCeQ5RaGAnW4migmjYgbzZ0hKekbWTdE1idDJoFbARX5zUbSjC5dKYcQorRG6rvmpvr0tWawDwFudYkM*fi3DjMvl8sdbd7uEj2udk37OOZP3p0JGja29AypFVRTasFZ5F6ODk=">马斯克首度承认自研AI芯片，或与英伟达“分手“ | 新智元</a> <br /><br>简评：特斯拉CEO Elon Musk在NIPS上公开承认，特斯拉正在开发专用的AI芯片。而同时，英伟达也在NIPS上发布了迄今为止最强大的“TITAN V” PC GPU。</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?timestamp=1513064452&src=3&ver=1&signature=fTQ93DETY2RWqbThhgdlcHCPhAS9hfeG3*KZPXWTck9Jbvjq*MoXpnIbzJ5b1w8x81SbAUlxwsFMnnf*RHj-o*sxTW9KUv508uyYMXZIUp2r6MCM3H3GZu-6tGUYDUljYOn2pPUrzWqRZJlN3-hWvqmEuRrkFXVh1VNLEwl83*o=">全面对比英伟达Tesla V100/P100 Tensor Core的RNN加速能力 | 机器之心</a> <br /><br>简评：RNN 是处理量化金融、风险管理等时序数据的主要深度学习模型，但这种模型用 GPU 加速的效果并不好。本文使用 RNN 与 LSTM 基于 TensorFlow 对比了英伟达 Tesla P100（Pascal）和 V100（Volta）GPU 的加速性能，且结果表明训练和推断过程的加速效果并没有我们预期的那么好。</li>
+<li><a target="_blank" rel="noopener" href="https://developers.googleblog.com/2017/12/announcing-core-ml-support.html">Announcing Core ML support in TensorFlow Lite | Google Developers</a> <br /><br>简评：谷歌宣布Core ML支持加载TensorFlow模型。此外，谷歌将会继续致力于TensorFlow Lite的跨平台，包括iOS平台。</li>
+<li><a target="_blank" rel="noopener" href="https://research.fb.com/onnx-v1-released/">ONNX V1 released | Facebook Research</a> <br /><br>简评：今年九月开源神经网络交换格式被开源，这是一种开源的模型格式。如今，Caffe2，CNTK，MXNet，Pytorch，TensorRT都已经支持该模型格式，且可用于生产环境。</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?timestamp=1513062415&src=3&ver=1&signature=fTQ93DETY2RWqbThhgdlcBlBx4tfraHNaizVJ4n-G5h4vphOJrIfT*OtM6NhvEmL1oYVtn1LYgKMeIWKD9NX77SYNFLAofIAMOV-dPGWrDJ01xT3Hca7zaXnyEZbacX58hEB5UBkSYgyiVjBOvczEU1vPh8sY4CVUm2eQvPVskE=">IBM推出机器学习加速“瑞士军刀”Power9芯片，性能为同类产品的10倍 | 新智元</a> [<a target="_blank" rel="noopener" href="https://www.ibm.com/blogs/research/2017/12/10x-faster-using-gpu/">原文</a>] [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1708.05357">paper</a>] <br /><br>简评：IBM最新一代的Power9正在进入市场，是目前唯一采用最先进的I / O子系统技术的处理器，包括下一代NVIDIA NVLink，PCIe Gen4和OpenCAPI。与x86比：最大9.5倍I / O带宽；2倍核心高性能；2.6倍RAM支持；1.8倍内存宽带。可以让Chainer，TensorFlow和Caffe等通用AI框运行的workloads增加近4倍。</li>
+</ul>
+<h2 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com//ucla-vision/parle">ucla-vision/parle</a> [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1707.00424">paper</a>] <br /><br>简评：Parle：用于深度学习并行训练的框架。该算法可以对同一个网络进行并行训练，可以把他们称为分片（replicas），通过并行SGD训练单个网络，收敛速度相比原本快2~4倍，同时还可达到更好的泛化性能。目前还只是CPU版本，即将提供多GPU版本的支持。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com//victordibia/handtracking">victordibia/handtracking: Building a Real-time Hand-Detector using Neural Networks (SSD) on Tensorflow</a> <br /><br>简评：作者基于TensorFlow框架实现的SSD模型的手检测器。作者在Macbook pro上进行了实验，在输入图像为320x240大小下，可以达到21FPS。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com//jwyang/faster-rcnn.pytorch">jwyang/faster-rcnn.pytorch</a> <br /><br>简评：更快的faster R-CNN实现。该项目用于加速faster R-CNN物体检测模型的训练，当然作者也承认参考了不少其他人的实现。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com//apple/turicreate">apple/turicreate: Turi Create simplifies the development of custom machine learning models.</a> <br /><br>简评：Turi是一个见到那构建机器学习模型的Python包，可以轻松训练自己的CoreML机器学习模型，去实现推荐、目标检测、图像分类甚至图像相似度检测或行为分类等等。</li>
+</ul>
+<h2 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h2><ul>
+<li>[1712.03112] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1712.03112">Effective Extensible Programming: Unleashing Julia on GPUs</a> <br /><br>简评：作者认为对计算密集型、可并行化的应用中编写并行化的低级语言程序较为困难，而使用GPU或其它加速计算设备是又很普遍的。为了解决这一问题作者提出可高效支持硬件的编译架构，用于对现有高级的Julia编程语言对GPU编程的支持。</li>
+<li>[1611.01576] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1611.01576">Quasi-Recurrent Neural Networks</a> [<a target="_blank" rel="noopener" href="https://github.com//JayParks/quasi-rnn">code</a>] [<a target="_blank" rel="noopener" href="https://einstein.ai/research/new-neural-network-building-block-allows-faster-and-more-accurate-text-understanding">blog</a>] <br /><br>简评：递归神经网络在序列建模上面有巨大优势，然而因为时序的计算依赖原因无法并行化导致训练效率很低。作者提出一种QRNNs（quasi-recurrent neural networks）方法，可以对序列建模的同时对时序过程并行化。此外，在相同隐藏层单元数目下，QRNNs比堆叠LSTMs有更好的预测精度，训练和测试时间也比原本快16倍，在语言建模、情感分类、字符级别的翻译任务上表现出了巨大优势。</li>
+<li>[1711.11460] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1711.11460">VoiceMask: Anonymize and Sanitize Voice Input on Mobile Devices</a> <br /><br>简评：语音输入通过云端的快速识别相比打字方便，但上传过程会造成隐私和敏感信息的泄露。作者在用户与云端间设立了一个用来保护隐私的名为VoiceMask的中间层，可以保护用户身份和隐私；同时还是用了关键词替换技术。这两个阶段都是在移动设备上进行。在50人的测试中，使用该技术语音识别准确率只下降了14.2%。</li>
+<li>[1712.02170] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1712.02170">Detecting Curve Text in the Wild: New Dataset and New Solution</a> [<a target="_blank" rel="noopener" href="https://github.com/Yuliang-Liu/Curve-Text-Detector">code</a>] <br /><br>简评：近年来自然场景的文字检测有很大进展，然而对曲线文本等场景效果不尽人意。作者因此构建了一个名为CTW1500的曲线文本数据集，包含1500张图像上超过1万的文本信息，其中训练样本1000个，测试样本500个。此外，作者提出基于多边形的曲线文本检测器，可以在无经验组合下直接检测曲线文本，以及两种后处理方法（非多边形抑制、多边形非最大抑制）来进一步提高检测性能。代码开源！</li>
+</ul>
+<h2 id="博文"><a href="#博文" class="headerlink" title="博文"></a>博文</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?timestamp=1513062415&src=3&ver=1&signature=fTQ93DETY2RWqbThhgdlcBlBx4tfraHNaizVJ4n-G5h4vphOJrIfT*OtM6NhvEmL1oYVtn1LYgKMeIWKD9NX72BBait0OkwXLIUNLsq5Wx5JiXoMrkvOW1atct-sHpmprfsbOcbK1-f99z*AGa2KSIKSvAgCufC0u0ukOOjq3IU=">专访Velodyne自动驾驶VP：无人驾驶量产得靠128线廉价激光雷达，中国将是最大市场 | 新智元</a> <br /><br>简评：Velodyne 激光雷达（64线）曾定价7万多美元，被认为是无人驾驶走向商用不得不解决的成本问题。近日，Velodyne 又发布了性能更佳的128线激光雷达，但是其自动驾驶负责人却表示，价格将会史无前例的低。此前，他们曾表示64线激光雷达可以从7万美元降到50美元。面对谷歌 Waymo自己打造价格只有其十分之一的激光雷达，特斯拉根本不使用激光雷达的情况，Velodyne 新产品会有怎样的定价？</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?timestamp=1513064452&src=3&ver=1&signature=fTQ93DETY2RWqbThhgdlcHCPhAS9hfeG3*KZPXWTck9Jbvjq*MoXpnIbzJ5b1w8x81SbAUlxwsFMnnf*RHj-o0JQgtuHqHM5e0uwRhAARDuTRQ2*uQEkHAhEDc6J2-WRuPUoWK*EVrFnn8ZlIXl*Qwa-FMvr91vZvIdqaRvfiv8=">BP表达式与硬件架构：相似性构建更高效的计算单元 | 机器之心</a> <br /><br>简评：反向传播是当前深度学习主要使用的参数更新方法，因此深度学习的硬件设计也需要拟合这种反向传播的计算结构。本文从反向传播的抽象表达开始简要地分析了 BP 算法和脉动阵列架构（systolic array architecture）之间的相似性，从而表明了脉动阵列架构适合执行 BP 和进行模型训练。</li>
+<li><a target="_blank" rel="noopener" href="https://weibo.com/tv/v/FyzglwpK0">Mask R-CNN2Go! On-device realtime person keypoint estimation on Samsung Galaxy S8 accelerated by Caffe2 and Qualcomm Snapdragon Neural Processing Engine | facebook</a> <br /><br>简评：Mask R-CNNGo是一个专为移动端DNN优化、且基于Mask R-CNN的实现。点击链接，观看行人关键点检测的视频演示，该演示是基于Samsung Galaxy S8手机，框架和处理引擎分别是Caffe2和Qualcomm Snapdragon Neural Processing Engine。</li>
+<li><a target="_blank" rel="noopener" href="http://learningsys.org/nips17/assets/slides/TVM-MLSys-NIPS17.pdf">End to End Optimization Stack for Deep Learning by Tianqi Chen | learningsys</a> <br /><br>简评：深度学习端到端优化栈：TVM。</li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av17077920/">Computer System Colloquium: Petascale Deep Learning on a Single Chip by Tapabrata Ghosh | Standford</a> <br /><br>简评：计算机系统研讨会关于单芯片千兆级深度学习（by Tapabrata Ghosh, Vathys）主题的视频录像。</li>
+<li><a target="_blank" rel="noopener" href="http://minimaxir.com/2017/11/benchmark-gpus/">Benchmarking Modern GPUs for Maximum Cloud Cost Efficiency in Deep Learning | minimaxir</a> <br /><br>简评：云端GPU深度学习最新性能评测。</li>
+<li><a target="_blank" rel="noopener" href="https://news.developer.nvidia.com/nvidia-deep-learning-inference-platform-performance-study/">NVIDIA Deep Learning Inference Platform Performance Study | NVIDIA Developer News Center</a> [<a target="_blank" rel="noopener" href="https://images.nvidia.com/content/pdf/inference-technical-overview.pdf">pdf</a>] <br /><br>简评：NVIDIA在深度学习推理方面的性能研究，具体内容请点击pdf查看该技术报告。</li>
+</ul>
+<hr>
+<p>Editor: 张先轶、袁帅</p>
+<hr>
+<p><a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/2.0/88x31.png" srcset="/img/loading.gif" /></a><br />本作品采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">知识共享署名-相同方式共享 2.0 通用许可协议</a>进行许可。</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/bi-weekly/">bi-weekly</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2017/12/26/bi-weekly/2017-12-26/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2017-12-26@Bi-weekly</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2017/11/28/bi-weekly/2017-11-28/">
+                        <span class="hidden-mobile">2017-11-28@Bi-weekly</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                <script src="https://utteranc.es/client.js"
+        repo="bigbigzxl/commit-utterances"
+        issue-term="pathname"
+        label="AI-Performance"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://github.com/AI-performance" target="_blank" rel="nofollow noopener"><span>AI</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://ai-performance.com" target="_blank" rel="nofollow noopener">
+        <span>Performance</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "2017-12-12@Bi-weekly&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+      icon: "§"
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
