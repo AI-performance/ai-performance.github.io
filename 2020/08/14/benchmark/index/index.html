@@ -141,7 +141,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      100 字
+      1.6k 字
     </span>
   
 
@@ -151,7 +151,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      27
        分钟
     </span>
   
@@ -183,12 +183,15 @@
             
             <article class="markdown-body">
               <div class="note note-success">
-            <p style="text-align:center;color:#f00056;font-size:1.5em;font-weight: bold;">摘要</p>业界新闻，论文，开源项目，博文，硬件加速
+            <p style="text-align:center;color:#f00056;font-size:1.5em;font-weight: bold;">摘要</p>AI推理框架，性能，模型，基准
           </div>
 
 
 <a id="more"></a>
 
+<p style="text-align:center;color:#f00056;font-size:2.5em;font-weight: bold;">
+Echarts展示：
+</p>
 
 <style>
   /* 设置整个页面的字体 */
@@ -204,6 +207,596 @@
     font-size: 15px;
   }
 </style>
+
+<script language="javascript" type="text/javascript">
+//读文件
+function readFile(filename){
+var fso = new ActiveXObject("Scripting.FileSystemObject");
+var f = fso.OpenTextFile(filename,1);
+var s = "";
+while (!f.AtEndOfStream)
+s += f.ReadLine()+"\n";
+f.Close();
+return s;
+}
+
+//写文件
+function writeFile(filename,filecontent){
+var fso, f, s ;
+fso = new ActiveXObject("Scripting.FileSystemObject");
+f = fso.OpenTextFile(filename,8,true);
+f.WriteLine(filecontent);
+f.Close();
+alert('ok');
+}
+// alert("js Read/Write提示信息！");  
+
+// v = fs.readFile(path.join(__dirname, './index.md'), function (error, result){};
+// alert(v); 
+</script>
+
+
+
+
+<!-- <!-- <script src="./requirejs.js"></script> -->
+<script>
+'use strict';
+// var fs = require('fs');
+// fs.readFile('./sample.png', function (err, data) {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log(data);
+//         console.log(data.length + ' bytes');
+//     }
+// });
+
+var fs = require('fs')
+fs.stat('first.js', (err, stat)=>{
+    if(err) {
+        console.log(err)
+    } else {
+         // 是否是文件:
+         console.log('isFile: ' + stat.isFile());
+         // 是否是目录:
+         console.log('isDirectory: ' + stat.isDirectory());
+         if (stat.isFile()) {
+             // 文件大小:
+             console.log('size: ' + stat.size);
+             // 创建时间, Date对象:
+             console.log('birth time: ' + stat.birthtime);
+             // 修改时间, Date对象:
+             console.log('modified time: ' + stat.mtime);
+         }
+    }
+})
+
+</script>
+
+
+<!-- <script>
+// const fs = require('hexo-fs');
+// var datas = fs.readFile(path, ['utf-8', r, true])
+</script> -->
+
+
+<div id="echarts1149" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('echarts1149'));
+
+        // 指定图表的配置项和数据
+        var option = option={
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data:['利润', '支出', '收入']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    yAxis : [
+        {
+            type : 'category',
+            axisTick : {show: false},
+            data : ['周一','周二','周三','周四','周五','周六','周日']
+        }
+    ],
+    series : [
+        {
+            name:'利润',
+            type:'bar',
+            itemStyle : {
+                normal: {
+                    label: {show: true, position: 'inside'}
+                }
+            },
+            data:[200, 170, 240, 244, 200, 220, 210]
+        },
+        {
+            name:'收入',
+            type:'bar',
+            stack: '总量',
+            itemStyle: {
+                normal: {
+                    label : {show: true}
+                }
+            },
+            data:[320, 302, 341, 374, 390, 450, 420]
+        },
+        {
+            name:'支出',
+            type:'bar',
+            stack: '总量',
+            itemStyle: {normal: {
+                label : {show: true, position: 'left'}
+            }},
+            data:[-120, -132, -101, -134, -190, -230, -210]
+        }
+    ]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+</script>
+
+
+
+
+<script>
+  var data = [
+        [[28604,77,17096869,'Australia',1990],[31163,77.4,27662440,'Canada',1990],[1516,68,1154605773,'China',1990],[13670,74.7,10582082,'Cuba',1990],[28599,75,4986705,'Finland',1990],[29476,77.1,56943299,'France',1990],[31476,75.4,78958237,'Germany',1990],[28666,78.1,254830,'Iceland',1990],[1777,57.7,870601776,'India',1990],[29550,79.1,122249285,'Japan',1990],[2076,67.9,20194354,'North Korea',1990],[12087,72,42972254,'South Korea',1990],[24021,75.4,3397534,'New Zealand',1990],[43296,76.8,4240375,'Norway',1990],[10088,70.8,38195258,'Poland',1990],[19349,69.6,147568552,'Russia',1990],[10670,67.3,53994605,'Turkey',1990],[26424,75.7,57110117,'United Kingdom',1990],[37062,75.4,252847810,'United States',1990]],
+        [[44056,81.8,23968973,'Australia',2015],[43294,81.7,35939927,'Canada',2015],[13334,76.9,1376048943,'China',2015],[21291,78.5,11389562,'Cuba',2015],[38923,80.8,5503457,'Finland',2015],[37599,81.9,64395345,'France',2015],[44053,81.1,80688545,'Germany',2015],[42182,82.8,329425,'Iceland',2015],[5903,66.8,1311050527,'India',2015],[36162,83.5,126573481,'Japan',2015],[1390,71.4,25155317,'North Korea',2015],[34644,80.7,50293439,'South Korea',2015],[34186,80.6,4528526,'New Zealand',2015],[64304,81.6,5210967,'Norway',2015],[24787,77.3,38611794,'Poland',2015],[23038,73.13,143456918,'Russia',2015],[19360,76.5,78665830,'Turkey',2015],[38225,81.4,64715810,'United Kingdom',2015],[53354,79.1,321773631,'United States',2015]]
+    ];
+</script>
+<div id="echarts4065" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('echarts4065'));
+
+        // 指定图表的配置项和数据
+        var option = {
+    backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
+        offset: 0,
+        color: '#f7f8fa'
+    }, {
+        offset: 1,
+        color: '#cdd0d5'
+    }]),
+    title: {
+        text: '1990 与 2015 年各国家人均寿命与 GDP'
+    },
+    legend: {
+        right: 10,
+        data: ['1990', '2015']
+    },
+    xAxis: {
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        },
+        scale: true
+    },
+    series: [{
+        name: '1990',
+        data: data[0],
+        type: 'scatter',
+        symbolSize: function (data) {
+            return Math.sqrt(data[2]) / 5e2;
+        },
+        emphasis: {
+            label: {
+                show: true,
+                formatter: function (param) {
+                    return param.data[3];
+                },
+                position: 'top'
+            }
+        },
+        itemStyle: {
+            shadowBlur: 10,
+            shadowColor: 'rgba(120, 36, 50, 0.5)',
+            shadowOffsetY: 5,
+            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                offset: 0,
+                color: 'rgb(251, 118, 123)'
+            }, {
+                offset: 1,
+                color: 'rgb(204, 46, 72)'
+            }])
+        }
+    }, {
+        name: '2015',
+        data: data[1],
+        type: 'scatter',
+        symbolSize: function (data) {
+            return Math.sqrt(data[2]) / 5e2;
+        },
+        emphasis: {
+            label: {
+                show: true,
+                formatter: function (param) {
+                    return param.data[3];
+                },
+                position: 'top'
+            }
+        },
+        itemStyle: {
+            shadowBlur: 10,
+            shadowColor: 'rgba(25, 100, 150, 0.5)',
+            shadowOffsetY: 5,
+            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                offset: 0,
+                color: 'rgb(129, 227, 238)'
+            }, {
+                offset: 1,
+                color: 'rgb(25, 183, 207)'
+            }])
+        }
+    }]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js"></script>
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+<div id="main" style="width: 85%;height:400px;margin: 0 auto"></div>
+<script type="text/javascript">
+  // 基于准备好的dom，初始化echarts实例
+  var myChart = echarts.init(document.getElementById('main'));
+  // 指定图表的配置项和数据
+var colors = ['#FFAE57', '#FF7853', '#EA5151', '#CC3F57', '#9A2555'];
+var bgColor = '#2E2733';
+var itemStyle = {
+      star5: {
+          color: colors[0]
+      },
+      star4: {
+          color: colors[1]
+      },
+      star3: {
+          color: colors[2]
+      },
+      star2: {
+          color: colors[3]
+      }
+  };
+var data = [{
+      name: '虚构',
+      itemStyle: {
+          color: colors[1]
+      },
+      children: [{
+          name: '小说',
+          children: [{
+              name: '5☆',
+              children: [{
+                  name: '疼'
+              }, {
+                  name: '慈悲'
+              }, {
+                  name: '楼下的房客'
+              }]
+          }, {
+              name: '4☆',
+              children: [{
+                  name: '虚无的十字架'
+              }, {
+                  name: '无声告白'
+              }, {
+                  name: '童年的终结'
+              }]
+          }, {
+              name: '3☆',
+              children: [{
+                  name: '疯癫老人日记'
+              }]
+          }]
+      }, {
+          name: '其他',
+          children: [{
+              name: '5☆',
+              children: [{
+                  name: '纳博科夫短篇小说全集'
+              }]
+          }, {
+              name: '4☆',
+              children: [{
+                  name: '安魂曲'
+              }, {
+                  name: '人生拼图版'
+              }]
+          }, {
+              name: '3☆',
+              children: [{
+                  name: '比起爱你，我更需要你'
+              }]
+          }]
+      }]
+  }, {
+      name: '非虚构',
+      itemStyle: {
+          color: colors[2]
+      },
+      children: [{
+          name: '设计',
+          children: [{
+              name: '5☆',
+              children: [{
+                  name: '无界面交互'
+              }]
+          }, {
+              name: '4☆',
+              children: [{
+                  name: '数字绘图的光照与渲染技术'
+              }, {
+                  name: '日本建筑解剖书'
+              }]
+          }, {
+              name: '3☆',
+              children: [{
+                  name: '奇幻世界艺术\n&RPG地图绘制讲座'
+              }]
+          }]
+      }, {
+          name: '社科',
+          children: [{
+              name: '5☆',
+              children: [{
+                  name: '痛点'
+              }]
+          }, {
+              name: '4☆',
+              children: [{
+                  name: '卓有成效的管理者'
+              }, {
+                  name: '进化'
+              }, {
+                  name: '后物欲时代的来临',
+              }]
+          }, {
+              name: '3☆',
+              children: [{
+                  name: '疯癫与文明'
+              }]
+          }]
+      }, {
+          name: '心理',
+          children: [{
+              name: '5☆',
+              children: [{
+                  name: '我们时代的神经症人格'
+              }]
+          }, {
+              name: '4☆',
+              children: [{
+                  name: '皮格马利翁效应'
+              }, {
+                  name: '受伤的人'
+              }]
+          }, {
+              name: '3☆',
+          }, {
+              name: '2☆',
+              children: [{
+                  name: '迷恋'
+              }]
+          }]
+      }, {
+          name: '居家',
+          children: [{
+              name: '4☆',
+              children: [{
+                  name: '把房子住成家'
+              }, {
+                  name: '只过必要生活'
+              }, {
+                  name: '北欧简约风格'
+              }]
+          }]
+      }, {
+          name: '绘本',
+          children: [{
+              name: '5☆',
+              children: [{
+                  name: '设计诗'
+              }]
+          }, {
+              name: '4☆',
+              children: [{
+                  name: '假如生活糊弄了你'
+              }, {
+                  name: '博物学家的神秘动物图鉴'
+              }]
+          }, {
+              name: '3☆',
+              children: [{
+                  name: '方向'
+              }]
+          }]
+      }, {
+          name: '哲学',
+          children: [{
+              name: '4☆',
+              children: [{
+                  name: '人生的智慧'
+              }]
+          }]
+      }, {
+          name: '技术',
+          children: [{
+              name: '5☆',
+              children: [{
+                  name: '代码整洁之道'
+              }]
+          }, {
+              name: '4☆',
+              children: [{
+                  name: 'Three.js 开发指南'
+              }]
+          }]
+      }]
+  }];
+  for (var j = 0; j < data.length; ++j) {
+      var level1 = data[j].children;
+      for (var i = 0; i < level1.length; ++i) {
+          var block = level1[i].children;
+          var bookScore = [];
+          var bookScoreId;
+          for (var star = 0; star < block.length; ++star) {
+              var style = (function (name) {
+                  switch (name) {
+                      case '5☆':
+                          bookScoreId = 0;
+                          return itemStyle.star5;
+                      case '4☆':
+                          bookScoreId = 1;
+                          return itemStyle.star4;
+                      case '3☆':
+                          bookScoreId = 2;
+                          return itemStyle.star3;
+                      case '2☆':
+                          bookScoreId = 3;
+                          return itemStyle.star2;
+                  }
+              })(block[star].name);
+              block[star].label = {
+                  color: style.color,
+                  downplay: {
+                      opacity: 0.5
+                  }
+              };
+              if (block[star].children) {
+                  style = {
+                      opacity: 1,
+                      color: style.color
+                  };
+                  block[star].children.forEach(function (book) {
+                      book.value = 1;
+                      book.itemStyle = style;
+                      book.label = {
+                          color: style.color
+                      };
+                      var value = 1;
+                      if (bookScoreId === 0 || bookScoreId === 3) {
+                          value = 5;
+                      }
+                      if (bookScore[bookScoreId]) {
+                          bookScore[bookScoreId].value += value;
+                      }
+                      else {
+                          bookScore[bookScoreId] = {
+                              color: colors[bookScoreId],
+                              value: value
+                          };
+                      }
+                  });
+              }
+          }
+          level1[i].itemStyle = {
+              color: data[j].itemStyle.color
+          };
+      }
+  }
+  option = {
+      backgroundColor: bgColor,
+      color: colors,
+      series: [{
+          type: 'sunburst',
+          center: ['50%', '48%'],
+          data: data,
+          sort: function (a, b) {
+              if (a.depth === 1) {
+                  return b.getValue() - a.getValue();
+              }
+              else {
+                  return a.dataIndex - b.dataIndex;
+              }
+          },
+          label: {
+              rotate: 'radial',
+              color: bgColor
+          },
+          itemStyle: {
+              borderColor: bgColor,
+              borderWidth: 2
+          },
+          levels: [{}, {
+              r0: 0,
+              r: 40,
+              label: {
+                  rotate: 0
+              }
+          }, {
+              r0: 40,
+              r: 105
+          }, {
+              r0: 115,
+              r: 140,
+              itemStyle: {
+                  shadowBlur: 2,
+                  shadowColor: colors[2],
+                  color: 'transparent'
+              },
+              label: {
+                  rotate: 'tangential',
+                  fontSize: 10,
+                  color: colors[0]
+              }
+          }, {
+              r0: 140,
+              r: 145,
+              itemStyle: {
+                  shadowBlur: 80,
+                  shadowColor: colors[0]
+              },
+              label: {
+                  position: 'outside',
+                  textShadowBlur: 5,
+                  textShadowColor: '#333',
+              },
+              downplay: {
+                  label: {
+                      opacity: 0.5
+                  }
+              }
+          }]
+      }]
+  };
+  // 使用刚指定的配置项和数据显示图表。
+  myChart.setOption(option);
+  // 刷新调整
+  window.onresize = function () {
+    myChart.resize();
+  }
+</script>
+
+
+
 
 <p><a id="rainbow" href=''>🌈 获取中...</a></p> -->
 <script>
@@ -248,8 +841,8 @@ fetch('https://api.eatrice.top')
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/08/14/x-profiler/index/">
-                        <span class="hidden-mobile">X-profiler startup Arch.</span>
+                      <a href="/2020/06/17/bi-weekly/2020-06-17/">
+                        <span class="hidden-mobile">2020-06-17@Bi-weekly</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
